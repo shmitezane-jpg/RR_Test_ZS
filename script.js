@@ -98,6 +98,12 @@ function updateChart(values) {
     }
 
     const labels = values.map((_, index) => index + 1);
+    const minValue = Math.min(...values);
+    const maxValue = Math.max(...values);
+    const range = maxValue - minValue;
+    const padding = Math.max(10, range === 0 ? Math.max(10, minValue * 0.1) : range * 0.1);
+    const yMin = Math.max(0, minValue - padding);
+    const yMax = maxValue + padding;
 
     const data = {
         labels,
@@ -129,6 +135,8 @@ function updateChart(values) {
                     display: true,
                     text: 'RR interval (ms)',
                 },
+                min: yMin,
+                max: yMax,
             },
         },
         plugins: {
