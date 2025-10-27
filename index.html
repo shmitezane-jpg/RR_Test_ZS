@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Rate Variability Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <h1>Heart Rate Variability Calculator</h1>
+            <p>Paste RR interval values (in milliseconds) to explore time-domain HRV metrics.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card input-card">
+            <h2>RR Interval Input</h2>
+            <p class="hint">Accepts comma, space or newline-separated values. A sample dataset is available below.</p>
+            <textarea id="rr-input" rows="10" placeholder="Example: 823, 810, 799, 812, 820"></textarea>
+            <div class="actions">
+                <button id="load-sample" type="button" class="secondary">Load sample data</button>
+                <button id="clear" type="button" class="secondary">Clear</button>
+                <button id="calculate" type="button" class="primary">Calculate HRV</button>
+            </div>
+            <p id="error-message" role="alert" aria-live="assertive"></p>
+        </section>
+
+        <section class="grid">
+            <div class="card">
+                <h2>Summary</h2>
+                <dl class="metrics" id="metrics"></dl>
+            </div>
+
+            <div class="card">
+                <h2>RR Interval Series</h2>
+                <canvas id="rr-chart" aria-label="RR interval chart" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Understanding the metrics</h2>
+            <ul class="metric-details">
+                <li><strong>Mean RR:</strong> Average RR interval duration.</li>
+                <li><strong>Mean HR:</strong> Average heart rate derived from mean RR.</li>
+                <li><strong>SDNN:</strong> Standard deviation of RR intervals, a measure of variability.</li>
+                <li><strong>RMSSD:</strong> Root mean square of successive differences, reflects short-term variability.</li>
+                <li><strong>pNN50:</strong> Percentage of successive differences greater than 50 ms.</li>
+                <li><strong>Triangular Index:</strong> Total number of RR intervals divided by the modal bin height (20 ms bins).</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container">
+            <small>
+                Calculations are intended for educational use and should not replace professional medical advice.
+            </small>
+        </div>
+    </footer>
+</body>
+</html>
